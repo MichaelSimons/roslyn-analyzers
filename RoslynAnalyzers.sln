@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28531.58
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -175,6 +175,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.CodeAnalysis.ResxSourceGenerator.VisualBasic", "src\Microsoft.CodeAnalysis.ResxSourceGenerator\Microsoft.CodeAnalysis.ResxSourceGenerator.VisualBasic\Microsoft.CodeAnalysis.ResxSourceGenerator.VisualBasic.csproj", "{DDEB5C32-0758-42D7-854F-6B924557EE35}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.CodeAnalysis.ResxSourceGenerator.UnitTests", "src\Microsoft.CodeAnalysis.ResxSourceGenerator\Microsoft.CodeAnalysis.ResxSourceGenerator.UnitTests\Microsoft.CodeAnalysis.ResxSourceGenerator.UnitTests.csproj", "{05BCDFF6-8B5B-4FF8-9239-3D42B580D8C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4F0FBF48-7073-40EF-A659-ED5D11688087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceTests", "src\PerformanceTests\PerformanceTests.csproj", "{89349F3A-1B16-4F7F-AA55-E0D181A136F8}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -460,6 +464,10 @@ Global
 		{05BCDFF6-8B5B-4FF8-9239-3D42B580D8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05BCDFF6-8B5B-4FF8-9239-3D42B580D8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05BCDFF6-8B5B-4FF8-9239-3D42B580D8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89349F3A-1B16-4F7F-AA55-E0D181A136F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89349F3A-1B16-4F7F-AA55-E0D181A136F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89349F3A-1B16-4F7F-AA55-E0D181A136F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89349F3A-1B16-4F7F-AA55-E0D181A136F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -536,6 +544,7 @@ Global
 		{8701846B-5C49-4E45-9CB8-C3055BCCB025} = {DFD6F330-E9C5-413A-9B13-95BCC7824797}
 		{DDEB5C32-0758-42D7-854F-6B924557EE35} = {DFD6F330-E9C5-413A-9B13-95BCC7824797}
 		{05BCDFF6-8B5B-4FF8-9239-3D42B580D8C8} = {DFD6F330-E9C5-413A-9B13-95BCC7824797}
+		{89349F3A-1B16-4F7F-AA55-E0D181A136F8} = {4F0FBF48-7073-40EF-A659-ED5D11688087}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC44ACA9-AEA3-4EE6-881C-2E08ED281B5F}

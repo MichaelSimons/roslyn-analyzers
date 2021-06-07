@@ -16,6 +16,7 @@ obj/
 .dotnet/
 .tools/
 .packages/
+src/PerformanceTests/BenchmarkDotNet.Artifacts/*
 
 # Per-user project properties
 launchSettings.json
