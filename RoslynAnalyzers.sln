@@ -187,6 +187,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpPerformanceTests", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerformanceTests", "PerformanceTests", "{CE87A0B7-E19B-4230-A73C-60F6D65EB7DC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerfDiff", "src\Tools\PerfDiff\PerfDiff.csproj", "{77DA8B5A-8359-4DE7-946C-3F87B08E25A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerfDiff", "PerfDiff", "{233EE677-95C5-4AFD-B421-847FF9ACF6D6}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Utilities\Workspaces\Workspaces.Utilities.projitems*{046419a7-c60d-40ff-ad7e-2bae461b7ce5}*SharedItemsImports = 5
@@ -483,6 +487,10 @@ Global
 		{7C7F475C-63F9-4F87-AC45-C37209450DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7F475C-63F9-4F87-AC45-C37209450DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7F475C-63F9-4F87-AC45-C37209450DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DA8B5A-8359-4DE7-946C-3F87B08E25A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DA8B5A-8359-4DE7-946C-3F87B08E25A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DA8B5A-8359-4DE7-946C-3F87B08E25A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DA8B5A-8359-4DE7-946C-3F87B08E25A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -563,6 +571,8 @@ Global
 		{5013AC2B-60FC-4188-913B-9B1039FD25D3} = {13A10EBE-4BB2-4877-99FC-CAB3527B9AD9}
 		{BE2D6987-FBC3-448A-AE27-61ADDAA6C08A} = {13A10EBE-4BB2-4877-99FC-CAB3527B9AD9}
 		{7C7F475C-63F9-4F87-AC45-C37209450DBB} = {CE87A0B7-E19B-4230-A73C-60F6D65EB7DC}
+		{77DA8B5A-8359-4DE7-946C-3F87B08E25A6} = {233EE677-95C5-4AFD-B421-847FF9ACF6D6}
+		{233EE677-95C5-4AFD-B421-847FF9ACF6D6} = {C0B86774-8307-444F-9EE4-98D62C3424F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC44ACA9-AEA3-4EE6-881C-2E08ED281B5F}
