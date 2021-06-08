@@ -9,7 +9,7 @@ using PerformanceTests.Utilities;
 
 namespace PerformanceTests.OnByDefaultAnalyzer
 {
-    public class OnByDefaultAnalyzerBenchmarks_CA1016
+    public class CA1016
     {
         [GlobalSetup]
         public static void CreateEnvironmentCA1016()
