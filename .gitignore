@@ -16,6 +16,7 @@ obj/
 .dotnet/
 .tools/
 .packages/
+temp/
 src/PerformanceTests/BenchmarkDotNet.Artifacts/*
 src/PerformanceTests/CSharp/BenchmarkDotNet.Artifacts/*
 
