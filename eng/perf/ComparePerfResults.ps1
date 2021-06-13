@@ -27,14 +27,15 @@ try {
     
     # Get json comparison tool
 
-    $perfDiff = Join-Path $root "src\Tools\PerfDiff\PerfDiff.csproj"
+    $perfDiff = Join-Path $RepoRoot "src\Tools\PerfDiff\PerfDiff.csproj"
     Invoke-Expression "dotnet run -c Release --project $perfDiff -- --baseline $baselineFolder --results $resultsFolder --failOnRegression --verbosity diag" > $logFile
 }
 catch {
     Write-Host $_
     Write-Host $_.Exception
     Write-Host $_.ScriptStackTrace
-    ExitWithExitCode 1
+    $host.SetShouldExit(1)
+    exit
 }
 finally {
     Set-Location $currentLocation

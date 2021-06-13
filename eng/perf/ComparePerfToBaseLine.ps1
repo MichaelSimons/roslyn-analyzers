@@ -72,10 +72,12 @@ catch {
     Write-Host $_
     Write-Host $_.Exception
     Write-Host $_.ScriptStackTrace
-    ExitWithExitCode 1
+    $host.SetShouldExit(1)
+    exit
 }
 finally {
     Invoke-Expression 'git worktree remove perfBaseline'
     Invoke-Expression 'git worktree remove perfTest'
+    Invoke-Expression 'git worktree prune'
     Set-Location $currentLocation
 }

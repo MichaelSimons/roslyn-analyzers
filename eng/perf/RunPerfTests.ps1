@@ -13,7 +13,8 @@ catch {
     Write-Host $_
     Write-Host $_.Exception
     Write-Host $_.ScriptStackTrace
-    ExitWithExitCode 1
+    $host.SetShouldExit(1)
+    exit
 }
 finally {
 }
