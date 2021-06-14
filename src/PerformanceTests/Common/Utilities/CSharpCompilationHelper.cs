@@ -13,13 +13,19 @@ namespace PerformanceTests.Utilities
 {
     public static class CSharpCompilationHelper
     {
-        public static async Task<Compilation> Create((string, string)[] sourceFiles)
+        public static async Task<Compilation> Create((string, string)[] sourceFiles, string editorconfigText = null)
         {
+            editorconfigText ??= string.Empty;
             var solutionState = ProjectState.Create("TestProject", LanguageNames.CSharp, "/0/Test", "cs");
             foreach (var sourceFile in sourceFiles)
             {
                 solutionState.Sources.Add(sourceFile);
             }
+
+            solutionState.AnalyzerConfigFiles.Add(("/.editorconfig", $@"root = true
+[*]
+{editorconfigText}
+"));
 
             var evaluatedProj = EvaluatedProjectState.Create(solutionState, ReferenceAssemblies.Default);
             var project = await CreateProjectAsync(evaluatedProj);
