@@ -34,7 +34,7 @@ class {name}
 "));
             }
 
-            var compilation = CSharpCompilationHelper.Create(sources.ToArray()).GetAwaiter().GetResult();
+            var compilation = CSharpCompilationHelper.CreateAsync(sources.ToArray()).GetAwaiter().GetResult();
             BaselineCompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new EmptyAnalyzer()));
             CompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new UseAsSpanInsteadOfRangeIndexerAnalyzer()));
         }

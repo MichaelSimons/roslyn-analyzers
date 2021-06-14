@@ -32,9 +32,9 @@ class {name}
 }}"));
             }
 
-            var compilation = CSharpCompilationHelper.Create(sources.ToArray(), "build_property.PublishSingleFile = true").GetAwaiter().GetResult();
-            BaselineCompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new EmptyAnalyzer()));
-            CompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new MarkAttributesWithAttributeUsageAnalyzer()));
+            var (compilation, options) = CSharpCompilationHelper.CreateWithOptionsAsync(sources.ToArray(), "build_property.PublishSingleFile = true").GetAwaiter().GetResult();
+            BaselineCompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new EmptyAnalyzer()), options);
+            CompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new MarkAttributesWithAttributeUsageAnalyzer()), options);
         }
 
         private static CompilationWithAnalyzers BaselineCompilationWithAnalyzers;

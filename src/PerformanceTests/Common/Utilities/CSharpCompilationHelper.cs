@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Host.Mef;
 using Microsoft.VisualStudio.Composition;
 
@@ -13,33 +13,39 @@ namespace PerformanceTests.Utilities
 {
     public static class CSharpCompilationHelper
     {
-        public static async Task<Compilation> Create((string, string)[] sourceFiles, string editorconfigText = null)
+        public static async Task<Compilation?> CreateAsync((string, string)[] sourceFiles)
+        {
+            var project = await CreateProjectAsync(sourceFiles, null);
+            return await project.GetCompilationAsync().ConfigureAwait(false);
+        }
+
+        public static async Task<(Compilation?, AnalyzerOptions)> CreateWithOptionsAsync((string, string)[] sourceFiles, string editorconfigText)
+        {
+            var project = await CreateProjectAsync(sourceFiles, editorconfigText);
+            return (await project.GetCompilationAsync().ConfigureAwait(false), project.AnalyzerOptions);
+        }
+
+        private static async Task<Project> CreateProjectAsync((string, string)[] sourceFiles, string? editorconfigText = null)
         {
             editorconfigText ??= string.Empty;
-            var solutionState = ProjectState.Create("TestProject", LanguageNames.CSharp, "/0/Test", "cs");
-            foreach (var sourceFile in sourceFiles)
+            var projectState = ProjectState.Create("TestProject", LanguageNames.CSharp, "/0/Test", "cs");
+            foreach (var (filename, content) in sourceFiles)
             {
-                solutionState.Sources.Add(sourceFile);
+                projectState.Sources.Add(("/0/Test" + filename + ".cs", content));
             }
 
-            solutionState.AnalyzerConfigFiles.Add(("/.editorconfig", $@"root = true
+            projectState.AnalyzerConfigFiles.Add(("/.editorconfig", $@"root = true
 [*]
 {editorconfigText}
 "));
 
-            var evaluatedProj = EvaluatedProjectState.Create(solutionState, ReferenceAssemblies.Default);
-            var project = await CreateProjectAsync(evaluatedProj);
-#pragma warning disable CS8603 // Possible null reference return.
-            return await project.GetCompilationAsync().ConfigureAwait(false);
-#pragma warning restore CS8603 // Possible null reference return.
+            var evaluatedProj = EvaluatedProjectState.Create(projectState, ReferenceAssemblies.Default);
+            return await CreateProjectAsync(evaluatedProj);
         }
 
         private static async Task<Project> CreateProjectAsync(EvaluatedProjectState primaryProject)
         {
-            var projectIdMap = new Dictionary<string, ProjectId>();
-
             var projectId = ProjectId.CreateNewId(debugName: primaryProject.Name);
-            projectIdMap.Add(primaryProject.Name, projectId);
             var solution = await CreateSolutionAsync(projectId, primaryProject);
 
             foreach (var (newFileName, source) in primaryProject.Sources)

@@ -2,7 +2,9 @@
 
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using BenchmarkDotNet.Attributes;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.NetCore.Analyzers.InteropServices;
 using PerformanceTests.Utilities;
@@ -277,9 +279,10 @@ namespace PlatformCompatDemo.SupportedUnupported
 }";
             sources.Add((nameof(targetTypesForTest), targetTypesForTest));
 
-            var compilation = CSharpCompilationHelper.Create(sources.ToArray(), "build_property.TargetFramework = net6").GetAwaiter().GetResult();
-            BaselineCompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new EmptyAnalyzer()));
-            CompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new PlatformCompatibilityAnalyzer()));
+            var (compilation, options) = CSharpCompilationHelper.CreateWithOptionsAsync(sources.ToArray(), "build_property.TargetFramework = net6").GetAwaiter().GetResult();
+            BaselineCompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new EmptyAnalyzer()), options);
+            CompilationWithAnalyzers = compilation.WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new PlatformCompatibilityAnalyzer()), options);
+            _ = CompilationWithAnalyzers.GetAllDiagnosticsAsync().GetAwaiter().GetResult();
         }
 
         private static CompilationWithAnalyzers BaselineCompilationWithAnalyzers;
