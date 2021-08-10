@@ -8,13 +8,13 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Analyzer.Utilities</Import_RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(MicrosoftCodeAnalysisVersion)' == '' OR '$(MicrosoftCodeAnalysisVersion)' &gt;= '3.3'">
+  <PropertyGroup Condition="'$(MicrosoftCodeAnalysisRefVersion)' == '' OR $([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisRefVersion),'3.3'))">
     <DefineConstants>$(DefineConstants),CODEANALYSIS_V3_OR_BETTER</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(MicrosoftCodeAnalysisVersion)' == '' OR '$(MicrosoftCodeAnalysisVersion)' &gt;= '3.7'">
+  <PropertyGroup Condition="'$(MicrosoftCodeAnalysisRefVersion)' == '' OR $([MSBuild]::VersionGreaterThanOrEquals($(MicrosoftCodeAnalysisRefVersion),'3.7'))">
     <DefineConstants>$(DefineConstants),CODEANALYSIS_V3_7_OR_BETTER</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(MicrosoftCodeAnalysisVersion)' != '1.2.1'">
+  <PropertyGroup Condition="$([MSBuild]::VersionNotEquals($(MicrosoftCodeAnalysisRefVersion),'1.2.1'))">
     <DefineConstants>$(DefineConstants);HAS_IOPERATION</DefineConstants>
     <HasIOperation>true</HasIOperation>
     <!-- Explicitly enable nullable for all projects that link Analyzer.Utilities.
@@ -140,6 +140,6 @@
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)DiagnosticCategoryAndIdRanges.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="$(MicrosoftCodeAnalysisVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="$(MicrosoftCodeAnalysisRefVersion)" />
   </ItemGroup>
 </Project>

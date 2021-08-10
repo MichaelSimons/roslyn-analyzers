@@ -5,7 +5,7 @@
     <NonShipping>true</NonShipping>
   </PropertyGroup>  
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="$(MicrosoftCodeAnalysisVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="$(MicrosoftCodeAnalysisRefVersion)" />
   </ItemGroup>
   <ItemGroup>
     <None Update="GenDiffNotes.cmd">

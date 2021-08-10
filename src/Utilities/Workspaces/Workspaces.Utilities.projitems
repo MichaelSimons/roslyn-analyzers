@@ -17,6 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SyntaxNodeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="$(MicrosoftCodeAnalysisVersion)" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="$(MicrosoftCodeAnalysisRefVersion)" />
   </ItemGroup>
 </Project>
